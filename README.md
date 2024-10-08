@@ -56,3 +56,55 @@ streamlit run app.py
     - An editorial will be saved in the `logs/{date}_edit_task.md` markdown file.
 3. Newsletter:
     - A newsletter will be saved in the `logs/{date}_newsletter_task.html` file.
+
+
+
+
+# Demo:
+
+Follow along with our interactive demo to see how the Auto NewsletterGen Crew works!
+
+<details>
+<summary>1. Newsletter Generator Input GUI</summary>
+
+![Newsletter Generator Input GUI](data/images/newsletter_generator_input_gui.png)
+
+Start by entering your topic and personal message in our user-friendly GUI.
+</details>
+
+<details>
+<summary>2. Research Process</summary>
+
+![Research Stories](data/images/research_stories.png)
+
+Our AI agents conduct thorough research on your chosen topic.
+</details>
+
+<details>
+<summary>3. Editorial Tasks</summary>
+
+![Editor Task](data/images/editor_task.png)
+![Editor Observation](data/images/editor_observation.png)
+![Editor Finished](data/images/editor_finished.png)
+
+The editor agent refines and structures the content for your newsletter.
+</details>
+
+<details>
+<summary>4. Agent Collaboration</summary>
+
+![Agent Observation](data/images/agent_observation.png)
+
+Watch as our AI agents work together seamlessly to create your newsletter.
+</details>
+
+<details>
+<summary>5. Newsletter Generation</summary>
+
+![HTML Writer Response](data/images/html_writer_response.png)
+![Generated Newsletter](data/images/generated_newsletter.png)
+
+The final step: Your personalized newsletter is generated and ready to share!
+</details>
+
+Experience the power of AI-driven content creation with Auto NewsletterGen Crew!
