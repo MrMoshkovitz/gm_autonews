@@ -7,9 +7,13 @@ from datetime import datetime
 import streamlit as st
 from typing import Union, List, Tuple, Dict
 from langchain_core.agents import AgentFinish
+from langchain_openai import ChatOpenAI
 import json
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 @CrewBase
@@ -20,8 +24,11 @@ class AutoNewsletterGenCrew:
     tasks_config = "config/tasks.yaml"
 
     def llm(self):
-        
-        llm = ChatAnthropic(model_name="claude-3-sonnet-20240229", max_tokens=4096, api_key=os.getenv("ANTHROPIC_API_KEY"))
+        llm_openai = ChatOpenAI(model="gpt-4o", api_key=os.getenv("OPENAI_API_KEY"))
+        api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not api_key:
+            raise ValueError("ANTHROPIC_API_KEY environment variable is not set.")
+        llm = ChatAnthropic(model_name="claude-3-sonnet-20240229", max_tokens=4096, api_key=api_key)
         # llm = ChatGroq(model="llama3-70b-8192")
         # llm = ChatGroq(model="mixtral-8x7b-32768")
         # llm = ChatGoogleGenerativeAI(google_api_key=os.getenv("GOOGLE_API_KEY"))
@@ -101,7 +108,7 @@ class AutoNewsletterGenCrew:
         return Task(
             config=self.tasks_config["research_task"],
             agent=self.researcher(),
-            output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_research_task.md",
+            output_file=f"/Users/galmoshkovitz/Code/Private/AutoNews_NoCrew/gm_autonews/logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_research_task.md",
         )
 
     @task
@@ -109,7 +116,7 @@ class AutoNewsletterGenCrew:
         return Task(
             config=self.tasks_config["edit_task"],
             agent=self.editor(),
-            output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_edit_task.md",
+            output_file=f"/Users/galmoshkovitz/Code/Private/AutoNews_NoCrew/gm_autonews/logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_edit_task.md",
         )
 
     @task
@@ -117,7 +124,7 @@ class AutoNewsletterGenCrew:
         return Task(
             config=self.tasks_config["newsletter_task"],
             agent=self.designer(),
-            output_file=f"logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_newsletter_task.html",
+            output_file=f"/Users/galmoshkovitz/Code/Private/AutoNews_NoCrew/gm_autonews/logs/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}_newsletter_task.html",
         )
 
     @crew

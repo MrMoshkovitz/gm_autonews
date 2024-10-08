@@ -1,5 +1,8 @@
 import streamlit as st
 from auto_newsletter_gen.crew import AutoNewsletterGenCrew
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class AutoNewsletterGenUI:

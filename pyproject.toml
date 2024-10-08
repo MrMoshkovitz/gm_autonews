@@ -18,7 +18,7 @@ pillow = "^10.3.0"
 
 [tool.poetry.scripts]
 auto_newsletter_gen = "auto_newsletter_gen.main:run"
-auto_newsletter_gen_ui = "auto_newsletter_gen.gui.app:run"
+
 
 [build-system]
 requires = ["poetry-core"]

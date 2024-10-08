@@ -11,6 +11,8 @@ class SearchAndContents(BaseTool):
     )
 
     def _run(self, search_query: str) -> str:
+        if not os.getenv("EXA_API_KEY"):
+            raise ValueError("EXA_API_KEY environment variable is not set.")
 
         exa = Exa(api_key=os.getenv("EXA_API_KEY"))
 
@@ -38,6 +40,9 @@ class FindSimilar(BaseTool):
         one_week_ago = datetime.now() - timedelta(days=7)
         date_cutoff = one_week_ago.strftime("%Y-%m-%d")
 
+        if not os.getenv("EXA_API_KEY"):
+            raise ValueError("EXA_API_KEY environment variable is not set.")
+
         exa = Exa(api_key=os.getenv("EXA_API_KEY"))
 
         search_results = exa.find_similar(
@@ -52,6 +57,9 @@ class GetContents(BaseTool):
     description: str = "Gets the contents of a specific article using the Exa API. Takes in the ID of the article in a list, like this: ['https://www.cnbc.com/2024/04/18/my-news-story']."
     
     def _run(self, article_ids: str) -> str:
+
+        if not os.getenv("EXA_API_KEY"):
+            raise ValueError("EXA_API_KEY environment variable is not set.")
 
         exa = Exa(api_key=os.getenv("EXA_API_KEY"))
 
